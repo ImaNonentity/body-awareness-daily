@@ -15,6 +15,7 @@
     --morning:   #A6A15E;
     --day:       #C69F89;
     --evening:   #93032E;
+    --breath:    #4A90D9;
     --nav-h:     72px;
     --safe:      env(safe-area-inset-bottom, 0px);
   }
@@ -318,6 +319,57 @@
     color: var(--bg);
   }
 
+
+  /* ── BREATH SESSION ──────────────────────── */
+  .breath .session-tag { color: var(--breath); }
+  .breath .timer-btn.running { background: var(--breath); color: #fff; }
+  .breath .timer-fill { background: var(--breath); }
+
+  .breath-info {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .breath-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 100px;
+    background: rgba(74,144,217,0.12);
+    color: var(--breath);
+  }
+
+  .breath-pattern {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 8px;
+  }
+  .breath-step {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+  .breath-step-num {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .breath-step-label {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
   /* ── BOTTOM NAV ──────────────────────────── */
   .bottom-nav {
     position: fixed;
@@ -332,6 +384,9 @@
     align-items: flex-start;
     padding-top: 10px;
     z-index: 100;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
   }
   .nav-btn {
     flex: 1;
@@ -357,6 +412,7 @@
   .nav-btn[data-session="morning"].active { color: var(--morning); }
   .nav-btn[data-session="day"].active     { color: var(--day); }
   .nav-btn[data-session="evening"].active { color: var(--evening); }
+  .nav-btn[data-session="breath"].active  { color: #4A90D9; }
 
   .nav-icon { font-size: 24px; line-height: 1; }
 </style>
@@ -760,6 +816,177 @@
   </div>
 </div>
 
+
+<!-- ══════════ BREATH ══════════ -->
+<div class="session breath" id="breath">
+  <div class="session-banner">
+    <div>
+      <div class="session-tag">Дихання</div>
+      <div class="session-title">Техніки дихання</div>
+    </div>
+    <div class="session-time">2–10 хв</div>
+  </div>
+
+  <div class="cards">
+
+    <details id="b1">
+      <summary>
+        <span class="card-num">01</span>
+        <div class="card-info">
+          <div class="card-name">4–7–8 — для сну і спокою</div>
+          <div class="card-meta">Заспокоєння · 3–5 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <div class="breath-info">
+          <span class="breath-tag">Парасимпатика</span>
+          <span class="breath-tag">Перед сном</span>
+          <span class="breath-tag">Тривога</span>
+        </div>
+        <div class="breath-pattern">
+          <div class="breath-step"><div class="breath-step-num">4</div><div class="breath-step-label">Вдих</div></div>
+          <div class="breath-step"><div class="breath-step-num">7</div><div class="breath-step-label">Затримка</div></div>
+          <div class="breath-step"><div class="breath-step-num">8</div><div class="breath-step-label">Видих</div></div>
+        </div>
+        <p class="instruction" style="margin-top:16px;">Вдих носом на <strong>4 рахунки</strong>. Затримка на <strong>7</strong>. Повільний видих ротом на <strong>8</strong> — зі звуком «ффф».<br><br>Повтори 4–6 циклів. Видих довший за вдих активує блукаючий нерв і переводить тіло в режим відпочинку.</p>
+        <div class="cue">
+          <div class="cue-label">Якщо 7 секунд затримки важко</div>
+          <p>Почни з 4–4–6. Пропорція важливіша за тривалість. Головне — видих завжди довший.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="b1" data-total="240">Старт</button>
+          <div class="timer-display" id="td-b1"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-b1"></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details id="b2">
+      <summary>
+        <span class="card-num">02</span>
+        <div class="card-info">
+          <div class="card-name">Бокове дихання — знімає напругу в шиї</div>
+          <div class="card-meta">Постава · 2 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <div class="breath-info">
+          <span class="breath-tag">Шия</span>
+          <span class="breath-tag">Ребра</span>
+          <span class="breath-tag">Постава</span>
+        </div>
+        <p class="instruction" style="margin-top:16px;">Поклади долоні на бічні поверхні ребер. Вдих носом — відчуй, як ребра розширюються <strong>в боки</strong>, не вгору. Плечі нерухомі.<br><br>Видих — ребра звужуються. 6–8 разів.<br><br>Більшість людей дихають грудьми вгору — це тримає трапецієподібні м'язи в постійному напруженні. Бокове дихання вимикає цей патерн.</p>
+        <div class="cue">
+          <div class="cue-label">Перевірка</div>
+          <p>Якщо під час вдиху плечі піднімаються — це поверхневе дихання. Спробуй ще раз, свідомо тримаючи плечі вниз.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="b2" data-total="120">Старт</button>
+          <div class="timer-display" id="td-b2"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-b2"></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details id="b3">
+      <summary>
+        <span class="card-num">03</span>
+        <div class="card-info">
+          <div class="card-name">Коробкове дихання — фокус і ясність</div>
+          <div class="card-meta">Концентрація · 3–4 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <div class="breath-info">
+          <span class="breath-tag">Фокус</span>
+          <span class="breath-tag">Стрес</span>
+          <span class="breath-tag">Перед роботою</span>
+        </div>
+        <div class="breath-pattern">
+          <div class="breath-step"><div class="breath-step-num">4</div><div class="breath-step-label">Вдих</div></div>
+          <div class="breath-step"><div class="breath-step-num">4</div><div class="breath-step-label">Затримка</div></div>
+          <div class="breath-step"><div class="breath-step-num">4</div><div class="breath-step-label">Видих</div></div>
+          <div class="breath-step"><div class="breath-step-num">4</div><div class="breath-step-label">Затримка</div></div>
+        </div>
+        <p class="instruction" style="margin-top:16px;">Чотири рівних фази по 4 рахунки утворюють «коробку». Техніка використовується Navy SEALs для збереження спокою в стресі.<br><br>Рівномірний ритм синхронізує серцеву варіабельність і знижує рівень кортизолу за 2–3 хвилини.</p>
+        <div class="cue">
+          <div class="cue-label">Коли використовувати</div>
+          <p>Перед складною розмовою, після тривожних новин, коли важко зосередитись. 4 цикли — мінімальна доза.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="b3" data-total="180">Старт</button>
+          <div class="timer-display" id="td-b3"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-b3"></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details id="b4">
+      <summary>
+        <span class="card-num">04</span>
+        <div class="card-info">
+          <div class="card-name">Діафрагмальне — основа всього</div>
+          <div class="card-meta">База · 3 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <div class="breath-info">
+          <span class="breath-tag">База</span>
+          <span class="breath-tag">Щодня</span>
+          <span class="breath-tag">Постава</span>
+        </div>
+        <p class="instruction" style="margin-top:16px;">Ляж або сядь. Одна рука на грудях, інша на животі. Вдих носом — <strong>живіт піднімається</strong>, груди майже нерухомі. Видих — живіт опускається.<br><br>Вдих 4 сек, видих 6 сек. 10–12 разів.<br><br>Це природне дихання, яке більшість людей втратила через стрес і сидячий спосіб життя. Діафрагма — головний дихальний м'яз, і вона безпосередньо пов'язана з тонусом м'язів шиї.</p>
+        <div class="cue">
+          <div class="cue-label">Якщо живіт не рухається</div>
+          <p>Спробуй лежачи. Поклади книгу на живіт і дихай так, щоб вона піднімалась. З часом м'язова пам'ять повернеться.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="b4" data-total="180">Старт</button>
+          <div class="timer-display" id="td-b4"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-b4"></div></div>
+        </div>
+      </div>
+    </details>
+
+    <details id="b5">
+      <summary>
+        <span class="card-num">05</span>
+        <div class="card-info">
+          <div class="card-name">Фізіологічний зітхання — швидкий скид</div>
+          <div class="card-meta">Стрес · 30 сек</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <div class="breath-info">
+          <span class="breath-tag">Швидко</span>
+          <span class="breath-tag">Паніка</span>
+          <span class="breath-tag">Стрес</span>
+        </div>
+        <div class="breath-pattern">
+          <div class="breath-step"><div class="breath-step-num">2×</div><div class="breath-step-label">Вдих</div></div>
+          <div class="breath-step"><div class="breath-step-num">↓</div><div class="breath-step-label">Видих довгий</div></div>
+        </div>
+        <p class="instruction" style="margin-top:16px;">Подвійний вдих носом: короткий вдих — і відразу ще один маленький вдих поверх нього (щоб легені розкрились максимально). Потім повільний довгий видих ротом.<br><br>Повтори 2–3 рази.<br><br>Це той самий рефлекс, що відбувається коли ми плачемо або схлипуємо — він миттєво знижує рівень CO₂ і вимикає тривожну реакцію. Найшвидша техніка з науковим підтвердженням (Стенфорд, 2023).</p>
+        <div class="cue">
+          <div class="cue-label">Коли це рятує</div>
+          <p>Гострий стрес, паніка, відчуття що «перехоплює подих». Буквально 3 цикли — і фізіологія змінюється.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="b5" data-total="60">Старт</button>
+          <div class="timer-display" id="td-b5"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-b5"></div></div>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</div>
+
 <!-- ══════════ BOTTOM NAV ══════════ -->
 <nav class="bottom-nav">
   <button class="nav-btn active" data-session="morning">
@@ -773,6 +1000,10 @@
   <button class="nav-btn" data-session="evening">
     <span class="nav-icon">🌙</span>
     <span>Вечір</span>
+  </button>
+  <button class="nav-btn" data-session="breath">
+    <span class="nav-icon">🫁</span>
+    <span>Дихання</span>
   </button>
 </nav>
 
