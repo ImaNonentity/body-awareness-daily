@@ -6,230 +6,250 @@
 <title>Практики тіла</title>
 <style>
   :root {
-    --bg: #F7F5F0;
-    --surface: #FFFFFF;
-    --surface-soft: #F0EDE8;
-    --ink: #1A1916;
-    --ink-2: #6B6860;
-    --ink-3: #9E9C97;
-    --accent-morning: #C97A3A;
-    --accent-day: #3A7AC9;
-    --accent-evening: #6A4EC9;
-    --border: rgba(26,25,22,0.1);
-    --radius: 14px;
-    --nav-h: 64px;
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --bg:        #E0E2CA;
+    --surface:   #F5F5EC;
+    --soft:      #EAD9CE;
+    --ink:       #071628;
+    --ink-2:     #3A3020;
+    --muted:     #8A8870;
+    --morning:   #A6A15E;
+    --day:       #C69F89;
+    --evening:   #93032E;
+    --nav-h:     72px;
+    --safe:      env(safe-area-inset-bottom, 0px);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
+  html { font-size: 16px; }
+
   body {
-    cursor: pointer;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Georgia', serif;
     min-height: 100vh;
-    padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 16px);
+    padding-bottom: calc(var(--nav-h) + var(--safe) + 24px);
     -webkit-text-size-adjust: 100%;
+    cursor: pointer;
   }
 
-  /* HEADER */
-  .header {
-    padding: 52px 20px 20px;
-    border-bottom: 1px solid var(--border);
+  /* ── HERO HEADER ─────────────────────────── */
+  .hero {
+    padding: 56px 24px 32px;
+    background: var(--ink);
+    color: var(--bg);
   }
-  .header-eyebrow {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  .hero-label {
     font-size: 11px;
-    letter-spacing: 0.12em;
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 8px;
+    color: var(--morning);
+    margin-bottom: 12px;
   }
-  .header-title {
-    font-size: 28px;
-    font-weight: normal;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin-bottom: 4px;
+  .hero-title {
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
   }
-  .header-sub {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
-    font-size: 14px;
-    color: var(--ink-2);
+  .hero-sub {
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(224,226,202,0.6);
+    line-height: 1.5;
   }
-  .total-time {
+  .hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    margin-top: 12px;
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    gap: 6px;
+    margin-top: 20px;
     font-size: 12px;
-    color: var(--ink-2);
-    background: var(--surface-soft);
-    border-radius: 20px;
-    padding: 5px 12px;
+    font-weight: 700;
+    color: var(--bg);
+    background: rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 7px 14px;
+    letter-spacing: 0.02em;
   }
 
-  /* SESSION CONTENT */
-  .session { display: none; padding: 16px 16px 0; }
+  /* ── SESSION PANELS ──────────────────────── */
+  .session { display: none; }
   .session.active { display: block; }
 
-  .session-header {
-    padding: 16px 4px 12px;
+  .session-banner {
+    padding: 28px 24px 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
   }
-  .session-label {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  .session-tag {
     font-size: 11px;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 2px;
+    margin-bottom: 6px;
   }
-  .morning .session-label { color: var(--accent-morning); }
-  .day .session-label { color: var(--accent-day); }
-  .evening .session-label { color: var(--accent-evening); }
+  .morning .session-tag { color: var(--morning); }
+  .day     .session-tag { color: var(--day); }
+  .evening .session-tag { color: var(--evening); }
 
   .session-title {
-    font-size: 20px;
-    font-weight: normal;
-    letter-spacing: -0.01em;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
-  .session-duration {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  .session-time {
     font-size: 12px;
-    color: var(--ink-3);
-    margin-top: 2px;
+    font-weight: 400;
+    color: var(--muted);
+    white-space: nowrap;
+    padding-bottom: 4px;
   }
 
-  /* PRACTICE BLOCKS */
-  .block {
+  /* ── CARDS ───────────────────────────────── */
+  .cards { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  details {
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 10px;
+    border-radius: 20px;
     overflow: hidden;
   }
 
-  /* FIX FOR IOS: cursor:pointer on non-interactive elements doesn't fire click.
-     Use a real button or add role=button + cursor:pointer trick. We use label trick. */
-  .block-head {
+  summary {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 18px 16px;
+    gap: 16px;
+    padding: 22px 20px;
+    list-style: none;
     cursor: pointer;
     user-select: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0.04);
-    min-height: 64px;
+    -webkit-user-select: none;
     touch-action: manipulation;
   }
+  summary::-webkit-details-marker { display: none; }
 
-  .block-num {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  .card-num {
     font-size: 11px;
-    color: var(--ink-3);
-    min-width: 20px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    min-width: 24px;
     flex-shrink: 0;
   }
-  .block-info { flex: 1; min-width: 0; }
-  .block-name {
-    font-size: 15px;
-    line-height: 1.3;
-    margin-bottom: 2px;
+  .card-info { flex: 1; min-width: 0; }
+  .card-name {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
   }
-  .block-meta {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
-    font-size: 12px;
-    color: var(--ink-3);
+  .card-meta {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 3px;
   }
-  .block-toggle {
-    font-size: 22px;
-    color: var(--ink-3);
-    transition: transform 0.2s;
+  .card-arrow {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
     line-height: 1;
-    flex-shrink: 0;
-    width: 32px;
-    text-align: center;
   }
-  .block.open .block-toggle { transform: rotate(45deg); }
+  details[open] .card-arrow { transform: rotate(45deg); }
 
-  .block-body {
-    display: none;
-    padding: 0 16px 20px;
-    border-top: 1px solid var(--border);
+  /* ── CARD BODY ───────────────────────────── */
+  .card-body {
+    padding: 0 20px 24px;
+    border-top: 1px solid rgba(7,22,40,0.08);
   }
-  .block.open .block-body { display: block; }
 
   .instruction {
     font-size: 15px;
-    line-height: 1.7;
+    font-weight: 400;
+    line-height: 1.75;
     color: var(--ink-2);
-    margin-top: 16px;
+    margin-top: 20px;
   }
   .instruction strong {
+    font-weight: 700;
     color: var(--ink);
-    font-weight: normal;
-    font-style: italic;
+    font-style: normal;
   }
 
-  .cue-box {
-    margin-top: 12px;
-    padding: 12px 14px;
-    background: var(--surface-soft);
-    border-radius: 10px;
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
-    font-size: 13px;
-    color: var(--ink-2);
-    line-height: 1.5;
+  .cue {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: var(--bg);
+    border-radius: 12px;
   }
   .cue-label {
     font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--ink-3);
-    margin-bottom: 4px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .cue p {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ink-2);
+    line-height: 1.55;
   }
 
-  /* TIMER */
-  .timer-row {
+  /* ── TIMER ───────────────────────────────── */
+  .timer {
+    margin-top: 20px;
+    background: var(--ink);
+    border-radius: 14px;
+    padding: 16px 18px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 16px;
+    gap: 14px;
   }
   .timer-btn {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     padding: 10px 20px;
-    border: 1.5px solid var(--border);
-    border-radius: 24px;
-    background: none;
-    color: var(--ink-2);
+    border-radius: 100px;
+    border: none;
+    background: var(--bg);
+    color: var(--ink);
     cursor: pointer;
-    /* iOS button fix */
     -webkit-appearance: none;
     appearance: none;
     touch-action: manipulation;
-    min-width: 80px;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
   }
   .timer-btn.running {
+    background: var(--morning);
     color: var(--ink);
-    border-color: var(--ink);
-    background: var(--surface-soft);
   }
+  .morning .timer-btn.running { background: var(--morning); }
+  .day     .timer-btn.running { background: var(--day); }
+  .evening .timer-btn.running { background: var(--evening); color: #fff; }
+
   .timer-display {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
-    font-size: 22px;
-    font-weight: 200;
-    color: var(--ink);
-    letter-spacing: -0.02em;
-    min-width: 52px;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--bg);
+    min-width: 60px;
   }
-  .timer-progress {
+  .timer-track {
     flex: 1;
     height: 3px;
-    background: var(--border);
+    background: rgba(224,226,202,0.2);
     border-radius: 3px;
     overflow: hidden;
   }
@@ -239,492 +259,497 @@
     border-radius: 3px;
     transition: width 1s linear;
   }
-  .morning .timer-fill { background: var(--accent-morning); }
-  .day .timer-fill { background: var(--accent-day); }
-  .evening .timer-fill { background: var(--accent-evening); }
+  .morning .timer-fill { background: var(--morning); }
+  .day     .timer-fill { background: var(--day); }
+  .evening .timer-fill { background: var(--evening); }
 
-  /* MICRO GRID */
+  /* ── MICRO GRID (day intro) ──────────────── */
   .micro-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-top: 14px;
+    gap: 10px;
+    margin-top: 16px;
   }
-  .micro-item {
-    background: var(--surface-soft);
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
-    font-size: 13px;
-    color: var(--ink-2);
-    line-height: 1.4;
+  .micro-cell {
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 16px;
   }
-  .micro-count {
-    font-size: 20px;
-    font-weight: 300;
+  .micro-num {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
     color: var(--ink);
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+  }
+  .micro-label {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
   }
 
-  /* PRINCIPLE STRIP */
-  .principle-strip {
-    margin-top: 24px;
-    padding: 16px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
+  /* ── PRINCIPLES ──────────────────────────── */
+  .principles {
+    margin: 24px 16px 0;
+    background: var(--ink);
+    border-radius: 20px;
+    padding: 24px 20px;
   }
-  .principle-label {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  .principles-label {
     font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ink-3);
-    margin-bottom: 10px;
+    color: rgba(224,226,202,0.4);
+    margin-bottom: 16px;
   }
-  .principle-list {
+  .pills {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
   .pill {
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
     font-size: 13px;
-    padding: 6px 13px;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    color: var(--ink-2);
+    font-weight: 400;
+    padding: 7px 14px;
+    border: 1px solid rgba(224,226,202,0.2);
+    border-radius: 100px;
+    color: var(--bg);
   }
 
-  /* BOTTOM NAV — iPhone-style */
+  /* ── BOTTOM NAV ──────────────────────────── */
   .bottom-nav {
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
-    height: calc(var(--nav-h) + var(--safe-bottom));
-    background: rgba(247, 245, 240, 0.92);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid var(--border);
+    left: 0; right: 0;
+    height: calc(var(--nav-h) + var(--safe));
+    padding-bottom: var(--safe);
+    background: rgba(7,22,40,0.96);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     display: flex;
     align-items: flex-start;
-    padding-top: 8px;
-    padding-bottom: var(--safe-bottom);
+    padding-top: 10px;
     z-index: 100;
   }
-  .nav-tab {
+  .nav-btn {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 6px 4px;
-    cursor: pointer;
-    border: none;
+    gap: 5px;
     background: none;
-    color: var(--ink-3);
-    font-family: -apple-system, 'Helvetica Neue', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+    padding: 8px 4px;
     -webkit-appearance: none;
-    appearance: none;
     touch-action: manipulation;
+    color: rgba(224,226,202,0.35);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     transition: color 0.15s;
   }
-  .nav-tab.active { color: var(--ink); font-weight: 600; }
-  .nav-tab[data-session="morning"].active { color: var(--accent-morning); }
-  .nav-tab[data-session="day"].active { color: var(--accent-day); }
-  .nav-tab[data-session="evening"].active { color: var(--accent-evening); }
+  .nav-btn.active { color: var(--bg); }
+  .nav-btn[data-session="morning"].active { color: var(--morning); }
+  .nav-btn[data-session="day"].active     { color: var(--day); }
+  .nav-btn[data-session="evening"].active { color: var(--evening); }
 
-  .nav-icon {
-    font-size: 22px;
-    line-height: 1;
-  }
-  .nav-dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: currentColor;
-    opacity: 0;
-    transition: opacity 0.15s;
-  }
-  .nav-tab.active .nav-dot { opacity: 1; }
+  .nav-icon { font-size: 24px; line-height: 1; }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-eyebrow">Щоденні практики</div>
-  <h1 class="header-title">Постава і зв'язок з тілом</h1>
-  <p class="header-sub">Три сесії на день</p>
-  <div class="total-time">
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+<header class="hero">
+  <div class="hero-label">Щоденні практики</div>
+  <h1 class="hero-title">Постава і зв'язок з тілом</h1>
+  <p class="hero-sub">Три сесії — ранок, день, вечір</p>
+  <div class="hero-badge">
+    <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.4"/><path d="M6 3v3l2 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
     ~20 хвилин на день
   </div>
-</div>
+</header>
 
-<!-- MORNING -->
+<!-- ══════════ MORNING ══════════ -->
 <div class="session morning active" id="morning">
-  <div class="session-header">
-    <div class="session-label">Ранок</div>
-    <div class="session-title">Пробудження тіла</div>
-    <div class="session-duration">7–8 хв · ще лежиш або сидиш</div>
+  <div class="session-banner">
+    <div>
+      <div class="session-tag">Ранок</div>
+      <div class="session-title">Пробудження тіла</div>
+    </div>
+    <div class="session-time">7–8 хв</div>
   </div>
 
-  <div class="block" id="m1">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">01</span>
-      <div class="block-info">
-        <div class="block-name">Зупинка перед початком дня</div>
-        <div class="block-meta">Скан · 1 хв</div>
-      </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Не вставай ще. Поклади руки на живіт або вздовж тіла. Зроби один глибокий вдих носом — повільний видих ротом.<br><br>Просто зупинись на 10–15 секунд і запитай себе: <strong>«Де я зараз відчуваю тіло?»</strong> Не відповідай — просто помітити.</p>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="m1" data-total="60">Старт</button>
-        <div class="timer-display" id="td-m1"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-m1"></div></div>
-      </div>
-    </div>
-  </div>
+  <div class="cards">
 
-  <div class="block" id="m2">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">02</span>
-      <div class="block-info">
-        <div class="block-name">Скан від ніг до голови</div>
-        <div class="block-meta">Скан · 2 хв</div>
+    <details id="m1">
+      <summary>
+        <span class="card-num">01</span>
+        <div class="card-info">
+          <div class="card-name">Зупинка перед початком дня</div>
+          <div class="card-meta">Скан · 1 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Не вставай ще. Поклади руки на живіт або вздовж тіла. Зроби один глибокий вдих носом — повільний видих ротом.<br><br>Просто зупинись на 10–15 секунд і запитай себе: <strong>«Де я зараз відчуваю тіло?»</strong> Не відповідай — просто помітити.</p>
+        <div class="timer">
+          <button class="timer-btn" data-id="m1" data-total="60">Старт</button>
+          <div class="timer-display" id="td-m1"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-m1"></div></div>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Повільно веди увагу знизу вгору. Нічого не виправляй — тільки помічай.<br><br>
-      <strong>Ступні → литки → коліна → стегна → живіт → грудна клітка → плечі → шия → голова</strong><br><br>
-      Де є вага? Де тепло? Де напруга або легкість?</p>
-      <div class="cue-box">
-        <div class="cue-label">Якщо думки відволікають</div>
-        Нормально. Просто повернись — де тіло торкається ліжка прямо зараз.
-      </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="m2" data-total="120">Старт</button>
-        <div class="timer-display" id="td-m2"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-m2"></div></div>
-      </div>
-    </div>
-  </div>
+    </details>
 
-  <div class="block" id="m3">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">03</span>
-      <div class="block-info">
-        <div class="block-name">«Так» і «ні» — дуже повільно</div>
-        <div class="block-meta">Шия · 1.5 хв</div>
+    <details id="m2">
+      <summary>
+        <span class="card-num">02</span>
+        <div class="card-info">
+          <div class="card-name">Скан від ніг до голови</div>
+          <div class="card-meta">Скан · 2 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Повільно веди увагу знизу вгору. Нічого не виправляй — тільки помічай.<br><br><strong>Ступні → литки → коліна → стегна → живіт → грудна клітка → плечі → шия → голова</strong><br><br>Де є вага? Де тепло? Де напруга або легкість?</p>
+        <div class="cue">
+          <div class="cue-label">Якщо думки відволікають</div>
+          <p>Нормально. Просто повернись — де тіло торкається ліжка прямо зараз.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="m2" data-total="120">Старт</button>
+          <div class="timer-display" id="td-m2"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-m2"></div></div>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Сидиш або лежиш. Голова на подушці — окей.<br><br>Дуже повільно голова повертається вправо — пауза — ліворуч. 4–5 разів. Потім вниз-вгору: підборіддя до грудей — пауза — злегка назад. Теж 4–5 разів.</p>
-      <div class="cue-box">
-        <div class="cue-label">Правило</div>
-        Рух такий повільний, що ти відчуваєш кожен міліметр. Нема «правильного» кута — є твій діапазон сьогодні.
-      </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="m3" data-total="90">Старт</button>
-        <div class="timer-display" id="td-m3"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-m3"></div></div>
-      </div>
-    </div>
-  </div>
+    </details>
 
-  <div class="block" id="m4">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">04</span>
-      <div class="block-info">
-        <div class="block-name">Вухо до плеча — маятник</div>
-        <div class="block-meta">Шия · 1.5 хв</div>
+    <details id="m3">
+      <summary>
+        <span class="card-num">03</span>
+        <div class="card-info">
+          <div class="card-name">«Так» і «ні» — дуже повільно</div>
+          <div class="card-meta">Шия · 1.5 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Сидиш або лежиш. Голова на подушці — окей.<br><br>Дуже повільно голова повертається вправо — пауза — ліворуч. 4–5 разів. Потім вниз-вгору: підборіддя до грудей — пауза — злегка назад. Теж 4–5 разів.</p>
+        <div class="cue">
+          <div class="cue-label">Правило</div>
+          <p>Рух такий повільний, що ти відчуваєш кожен міліметр. Нема «правильного» кута — є твій діапазон сьогодні.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="m3" data-total="90">Старт</button>
+          <div class="timer-display" id="td-m3"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-m3"></div></div>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Праве вухо тягнеться до правого плеча — <strong>плече не рухається</strong>, залишається внизу. Пауза 2–3 секунди. Повертаємось. Ліве вухо до лівого плеча. 3–4 рази на кожен бік.<br><br>Потім плавний маятник: вухо—центр—вухо. Тільки вперед, не закидаємо голову назад.</p>
-      <div class="cue-box">
-        <div class="cue-label">Фокус уваги</div>
-        Відчуй розтягнення збоку шиї. Ця увага і є нейропластичність — не механічний рух, а усвідомлене відчуття.
-      </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="m4" data-total="90">Старт</button>
-        <div class="timer-display" id="td-m4"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-m4"></div></div>
-      </div>
-    </div>
-  </div>
+    </details>
 
-  <div class="block" id="m5">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">05</span>
-      <div class="block-info">
-        <div class="block-name">Підборіддя вперед і назад</div>
-        <div class="block-meta">Шия · 1 хв</div>
+    <details id="m4">
+      <summary>
+        <span class="card-num">04</span>
+        <div class="card-info">
+          <div class="card-name">Вухо до плеча — маятник</div>
+          <div class="card-meta">Шия · 1.5 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Праве вухо тягнеться до правого плеча — <strong>плече не рухається</strong>, залишається внизу. Пауза 2–3 секунди. Повертаємось. Ліве вухо до лівого плеча. 3–4 рази на кожен бік.<br><br>Потім плавний маятник: вухо—центр—вухо. Тільки вперед, не закидаємо голову назад.</p>
+        <div class="cue">
+          <div class="cue-label">Фокус уваги</div>
+          <p>Відчуй розтягнення збоку шиї. Ця увага і є нейропластичність — не механічний рух, а усвідомлене відчуття.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="m4" data-total="90">Старт</button>
+          <div class="timer-display" id="td-m4"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-m4"></div></div>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Найважливіший рух для тих, хто сидить за екраном.<br><br>Голова горизонтально їде вперед (підборіддя висувається) — потім назад (підбородок «ховається»). Повільно, 5–6 разів. Уяви, що голова ковзає по горизонтальній рейці.</p>
-      <div class="cue-box">
-        <div class="cue-label">Відчуття «назад»</div>
-        Коли голова їде назад — це і є нейтральне положення. Можливо, вперше за день голова стоїть над хребтом, а не перед ним.
-      </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="m5" data-total="60">Старт</button>
-        <div class="timer-display" id="td-m5"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-m5"></div></div>
-      </div>
-    </div>
-  </div>
+    </details>
 
-  <div class="block" id="m6">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">06</span>
-      <div class="block-info">
-        <div class="block-name">Три вдихи — завершення</div>
-        <div class="block-meta">Скан · 30 сек</div>
+    <details id="m5">
+      <summary>
+        <span class="card-num">05</span>
+        <div class="card-info">
+          <div class="card-name">Підборіддя вперед і назад</div>
+          <div class="card-meta">Шия · 1 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Найважливіший рух для тих, хто сидить за екраном.<br><br>Голова горизонтально їде вперед (підборіддя висувається) — потім назад (підбородок «ховається»). Повільно, 5–6 разів. Уяви, що голова ковзає по горизонтальній рейці.</p>
+        <div class="cue">
+          <div class="cue-label">Відчуття «назад»</div>
+          <p>Коли голова їде назад — це і є нейтральне положення. Можливо, вперше за день голова стоїть над хребтом, а не перед ним.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="m5" data-total="60">Старт</button>
+          <div class="timer-display" id="td-m5"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-m5"></div></div>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Заплющ очі на 30 секунд. Три повільних вдихи. На кожному видиху — просто помітити: <strong>«де зараз моя голова відносно тіла?»</strong> Не виправляти — помітити.</p>
-      <div class="cue-box">
-        <div class="cue-label">Чому це важливо</div>
-        Нейропластичність відбувається саме в момент усвідомленої паузи після руху — не під час самого руху.
+    </details>
+
+    <details id="m6">
+      <summary>
+        <span class="card-num">06</span>
+        <div class="card-info">
+          <div class="card-name">Три вдихи — завершення</div>
+          <div class="card-meta">Скан · 30 сек</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Заплющ очі на 30 секунд. Три повільних вдихи. На кожному видиху — просто помітити: <strong>«де зараз моя голова відносно тіла?»</strong> Не виправляти — помітити.</p>
+        <div class="cue">
+          <div class="cue-label">Чому це важливо</div>
+          <p>Нейропластичність відбувається саме в момент усвідомленої паузи після руху — не під час самого руху.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="m6" data-total="30">Старт</button>
+          <div class="timer-display" id="td-m6"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-m6"></div></div>
+        </div>
       </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="m6" data-total="30">Старт</button>
-        <div class="timer-display" id="td-m6"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-m6"></div></div>
-      </div>
-    </div>
+    </details>
+
   </div>
 </div>
 
-<!-- DAY -->
+<!-- ══════════ DAY ══════════ -->
 <div class="session day" id="day">
-  <div class="session-header">
-    <div class="session-label">День</div>
-    <div class="session-title">Мікро-перевірки</div>
-    <div class="session-duration">30 сек × 4–5 разів · прив'язати до тригера</div>
+  <div class="session-banner">
+    <div>
+      <div class="session-tag">День</div>
+      <div class="session-title">Мікро-перевірки</div>
+    </div>
+    <div class="session-time">4–5 хв</div>
   </div>
 
-  <div class="block" id="d0">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">↺</span>
-      <div class="block-info">
-        <div class="block-name">Як це працює</div>
-        <div class="block-meta">Прочитай перед початком</div>
-      </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Мікро-перевірки — найважливіша частина всієї системи. Не тому що вони довгі, а тому що їх багато. Кожна займає 30 секунд, але за день їх 4–5 — це 150 нагадувань мозку на тиждень.</p>
-      <div class="micro-grid">
-        <div class="micro-item"><div class="micro-count">30″</div>одна перевірка</div>
-        <div class="micro-item"><div class="micro-count">×5</div>разів на день</div>
-        <div class="micro-item"><div class="micro-count">~35</div>разів на тиждень</div>
-        <div class="micro-item"><div class="micro-count">0</div>спеціального часу</div>
-      </div>
-      <div class="cue-box" style="margin-top:14px;">
-        <div class="cue-label">Тригери — прив'яжи до чогось існуючого</div>
-        Ковток кави або чаю · Нове повідомлення · Початок відеодзвінку · Після туалету · Пересів з місця на місце
-      </div>
-    </div>
-  </div>
+  <div class="cards">
 
-  <div class="block" id="d1">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">01</span>
-      <div class="block-info">
-        <div class="block-name">Стоп-момент: де зараз голова?</div>
-        <div class="block-meta">30 сек</div>
+    <details id="d0">
+      <summary>
+        <span class="card-num">↺</span>
+        <div class="card-info">
+          <div class="card-name">Як це працює</div>
+          <div class="card-meta">Прочитай перед початком</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Мікро-перевірки — найважливіша частина всієї системи. Не тому що вони довгі, а тому що їх багато. Кожна займає 30 секунд, але за день їх 4–5 — це 150 нагадувань мозку на тиждень.</p>
+        <div class="micro-grid">
+          <div class="micro-cell"><div class="micro-num">30″</div><div class="micro-label">одна перевірка</div></div>
+          <div class="micro-cell"><div class="micro-num">×5</div><div class="micro-label">разів на день</div></div>
+          <div class="micro-cell"><div class="micro-num">~35</div><div class="micro-label">разів на тиждень</div></div>
+          <div class="micro-cell"><div class="micro-num">0</div><div class="micro-label">спеціального часу</div></div>
+        </div>
+        <div class="cue" style="margin-top:14px;">
+          <div class="cue-label">Тригери</div>
+          <p>Ковток кави · Нове повідомлення · Початок відеодзвінку · Після туалету · Пересів з місця на місце</p>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Не рухайся. Просто зупинись і помітити — де зараз знаходиться голова в просторі? Вона попереду плечей? Нахилена? Це не оцінка — просто факт.</p>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="d1" data-total="30">Старт</button>
-        <div class="timer-display" id="td-d1"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-d1"></div></div>
-      </div>
-    </div>
-  </div>
+    </details>
 
-  <div class="block" id="d2">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">02</span>
-      <div class="block-info">
-        <div class="block-name">Нитка від маківки — вгору</div>
-        <div class="block-meta">30 сек</div>
+    <details id="d1">
+      <summary>
+        <span class="card-num">01</span>
+        <div class="card-info">
+          <div class="card-name">Стоп-момент: де зараз голова?</div>
+          <div class="card-meta">30 сек</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Не рухайся. Просто зупинись і помітити — де зараз знаходиться голова в просторі? Вона попереду плечей? Нахилена? Це не оцінка — просто факт.</p>
+        <div class="timer">
+          <button class="timer-btn" data-id="d1" data-total="30">Старт</button>
+          <div class="timer-display" id="td-d1"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-d1"></div></div>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Уяви, що від маківки голови тягнеться нитка вгору. Вона злегка витягує голову вгору і назад. Підборіддя трохи опускається. Не «правильна постава», а легкість.<br><br>Вдих — нитка трохи натягується. Видих — відпусти плечі.</p>
-      <div class="cue-box">
-        <div class="cue-label">Не треба тримати</div>
-        Не намагайся зберегти це положення весь день. Просто відчути — і відпусти. Мозок запам'ятає.
-      </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="d2" data-total="30">Старт</button>
-        <div class="timer-display" id="td-d2"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-d2"></div></div>
-      </div>
-    </div>
-  </div>
+    </details>
 
-  <div class="block" id="d3">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">03</span>
-      <div class="block-info">
-        <div class="block-name">Плечі — відпустити на видиху</div>
-        <div class="block-meta">30 сек</div>
+    <details id="d2">
+      <summary>
+        <span class="card-num">02</span>
+        <div class="card-info">
+          <div class="card-name">Нитка від маківки — вгору</div>
+          <div class="card-meta">30 сек</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Уяви, що від маківки голови тягнеться нитка вгору. Вона злегка витягує голову вгору і назад. Підборіддя трохи опускається. Не «правильна постава», а легкість.<br><br>Вдих — нитка трохи натягується. Видих — відпусти плечі.</p>
+        <div class="cue">
+          <div class="cue-label">Не треба тримати</div>
+          <p>Не намагайся зберегти це положення весь день. Просто відчути — і відпусти. Мозок запам'ятає.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="d2" data-total="30">Старт</button>
+          <div class="timer-display" id="td-d2"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-d2"></div></div>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Підніми плечі до вух на вдиху — затримай на 2 секунди — і повністю відпусти на видиху. Повтори 3 рази.<br><br>Після третього разу помітити, на скільки сантиметрів плечі нижче, ніж були до.</p>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="d3" data-total="30">Старт</button>
-        <div class="timer-display" id="td-d3"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-d3"></div></div>
-      </div>
-    </div>
-  </div>
+    </details>
 
-  <div class="block" id="d4">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">04</span>
-      <div class="block-info">
-        <div class="block-name">Погляд вдаль — anti-screen</div>
-        <div class="block-meta">30 сек</div>
+    <details id="d3">
+      <summary>
+        <span class="card-num">03</span>
+        <div class="card-info">
+          <div class="card-name">Плечі — відпустити на видиху</div>
+          <div class="card-meta">30 сек</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Підніми плечі до вух на вдиху — затримай на 2 секунди — і повністю відпусти на видиху. Повтори 3 рази.<br><br>Після третього разу помітити, на скільки сантиметрів плечі нижче, ніж були до.</p>
+        <div class="timer">
+          <button class="timer-btn" data-id="d3" data-total="30">Старт</button>
+          <div class="timer-display" id="td-d3"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-d3"></div></div>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Відведи погляд від екрана і подивись на найдальшу точку, яку бачиш. Або у вікно. Утримуй 20–30 секунд.<br><br>Це знімає спазм акомодації ока і автоматично змінює положення голови — очі, спрямовані вдаль, «тягнуть» голову в нейтральне положення.</p>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="d4" data-total="30">Старт</button>
-        <div class="timer-display" id="td-d4"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-d4"></div></div>
+    </details>
+
+    <details id="d4">
+      <summary>
+        <span class="card-num">04</span>
+        <div class="card-info">
+          <div class="card-name">Погляд вдаль — anti-screen</div>
+          <div class="card-meta">30 сек</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Відведи погляд від екрана і подивись на найдальшу точку, яку бачиш. Або у вікно. Утримуй 20–30 секунд.<br><br>Це знімає спазм акомодації ока і автоматично змінює положення голови — очі, спрямовані вдаль, «тягнуть» голову в нейтральне положення.</p>
+        <div class="timer">
+          <button class="timer-btn" data-id="d4" data-total="30">Старт</button>
+          <div class="timer-display" id="td-d4"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-d4"></div></div>
+        </div>
       </div>
-    </div>
+    </details>
+
   </div>
 </div>
 
-<!-- EVENING -->
+<!-- ══════════ EVENING ══════════ -->
 <div class="session evening" id="evening">
-  <div class="session-header">
-    <div class="session-label">Вечір</div>
-    <div class="session-title">Заземлення і відпускання</div>
-    <div class="session-duration">7–10 хв · після роботи або перед сном</div>
+  <div class="session-banner">
+    <div>
+      <div class="session-tag">Вечір</div>
+      <div class="session-title">Заземлення і відпускання</div>
+    </div>
+    <div class="session-time">7–10 хв</div>
   </div>
 
-  <div class="block" id="e1">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">01</span>
-      <div class="block-info">
-        <div class="block-name">Стіна — нейтральне положення</div>
-        <div class="block-meta">Постава · 2–3 хв</div>
+  <div class="cards">
+
+    <details id="e1">
+      <summary>
+        <span class="card-num">01</span>
+        <div class="card-info">
+          <div class="card-name">Стіна — нейтральне положення</div>
+          <div class="card-meta">Постава · 2–3 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Стань спиною до стіни. Три точки торкаються стіни: <strong>потилиця, лопатки, крижі</strong>. П'яти можуть бути злегка відсунуті від стіни — 5–10 см.<br><br>Просто стій і дихай. Це «скидає» денне напруження і дає тілу референс нейтрального положення.</p>
+        <div class="cue">
+          <div class="cue-label">Якщо потилиця не дістає стіни</div>
+          <p>Це показник forward head — все норм, просто помітити. З часом дістане.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="e1" data-total="150">Старт</button>
+          <div class="timer-display" id="td-e1"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-e1"></div></div>
+        </div>
       </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Стань спиною до стіни. Три точки торкаються стіни: <strong>потилиця, лопатки, крижі</strong>. П'яти можуть бути злегка відсунуті від стіни — 5–10 см.<br><br>Просто стій і дихай. Це «скидає» денне напруження і дає тілу референс нейтрального положення.</p>
-      <div class="cue-box">
-        <div class="cue-label">Якщо потилиця не дістає стіни</div>
-        Це показник forward head — все норм, просто помітити. З часом дістане.
+    </details>
+
+    <details id="e2">
+      <summary>
+        <span class="card-num">02</span>
+        <div class="card-info">
+          <div class="card-name">Напружити і відпустити шию</div>
+          <div class="card-meta">Release · 2 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Сидячи або стоячи. Напружи м'язи шиї на 5–7 секунд — як ніби хтось тисне на голову зверху і ти чиниш опір. Потім повністю відпусти на 10 секунд.<br><br>Повтори 4–5 разів. Після кожного відпускання помічати різницю.</p>
+        <div class="cue">
+          <div class="cue-label">Чому це працює</div>
+          <p>Метод «напруж-відпусти» (PMR) скидає м'язовий тонус краще за пасивне розтягнення — нервова система «дозволяє» розслабитись тільки після свідомого напруження.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="e2" data-total="120">Старт</button>
+          <div class="timer-display" id="td-e2"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-e2"></div></div>
+        </div>
       </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="e1" data-total="150">Старт</button>
-        <div class="timer-display" id="td-e1"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-e1"></div></div>
+    </details>
+
+    <details id="e3">
+      <summary>
+        <span class="card-num">03</span>
+        <div class="card-info">
+          <div class="card-name">Body scan від ніг до голови</div>
+          <div class="card-meta">Скан · 3 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Ляж або сядь зручно. Заплющ очі. Повільно ведеш увагу знизу вгору — так само як вранці, але ввечері інакше: тіло важче, напруга чіткіша.<br><br>На кожній зоні — один видих. Не намагайся розслабити — просто поспілкуйся з кожною частиною тіла. «Привіт, ноги. Привіт, живіт.»</p>
+        <div class="cue">
+          <div class="cue-label">Ранок vs вечір</div>
+          <p>Ранковий скан — це «вмикання», вечірній — «вимикання». Той самий рух, але різний намір.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="e3" data-total="180">Старт</button>
+          <div class="timer-display" id="td-e3"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-e3"></div></div>
+        </div>
       </div>
-    </div>
+    </details>
+
+    <details id="e4">
+      <summary>
+        <span class="card-num">04</span>
+        <div class="card-info">
+          <div class="card-name">Дихання 4–7–8</div>
+          <div class="card-meta">Дихання · 3 хв</div>
+        </div>
+        <span class="card-arrow">+</span>
+      </summary>
+      <div class="card-body">
+        <p class="instruction">Вдих носом — <strong>4 секунди</strong>. Затримка — <strong>7 секунд</strong>. Видих ротом — <strong>8 секунд</strong>. Повтори 4–6 циклів.<br><br>Це активує парасимпатичну нервову систему і знижує загальний м'язовий тонус — після цього постава стає вільнішою без будь-яких зусиль.</p>
+        <div class="cue">
+          <div class="cue-label">Якщо 7 секунд затримки — багато</div>
+          <p>Почни з 4–4–6. Поступово збільшуй. Головне — видих завжди довший за вдих.</p>
+        </div>
+        <div class="timer">
+          <button class="timer-btn" data-id="e4" data-total="180">Старт</button>
+          <div class="timer-display" id="td-e4"></div>
+          <div class="timer-track"><div class="timer-fill" id="tf-e4"></div></div>
+        </div>
+      </div>
+    </details>
+
   </div>
 
-  <div class="block" id="e2">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">02</span>
-      <div class="block-info">
-        <div class="block-name">Напружити і відпустити шию</div>
-        <div class="block-meta">Release · 2 хв</div>
-      </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Сидячи або стоячи. Напружи м'язи шиї на 5–7 секунд — як ніби хтось тисне на голову зверху і ти чиниш опір. Потім повністю відпусти на 10 секунд.<br><br>Повтори 4–5 разів. Після кожного відпускання помічати різницю.</p>
-      <div class="cue-box">
-        <div class="cue-label">Чому це працює</div>
-        Метод «напруж-відпусти» (PMR) скидає м'язовий тонус краще за пасивне розтягнення — нервова система «дозволяє» розслабитись тільки після свідомого напруження.
-      </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="e2" data-total="120">Старт</button>
-        <div class="timer-display" id="td-e2"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-e2"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="block" id="e3">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">03</span>
-      <div class="block-info">
-        <div class="block-name">Body scan від ніг до голови</div>
-        <div class="block-meta">Скан · 3 хв</div>
-      </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Ляж або сядь зручно. Заплющ очі. Повільно ведеш увагу знизу вгору — так само як вранці, але ввечері інакше: тіло важче, напруга чіткіша.<br><br>На кожній зоні — один видих. Не намагайся розслабити — просто поспілкуйся з кожною частиною тіла. «Привіт, ноги. Привіт, живіт.»</p>
-      <div class="cue-box">
-        <div class="cue-label">Ранок vs вечір</div>
-        Ранковий скан — це «вмикання», вечірній — «вимикання». Той самий рух, але різний намір.
-      </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="e3" data-total="180">Старт</button>
-        <div class="timer-display" id="td-e3"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-e3"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="block" id="e4">
-    <div class="block-head" role="button" tabindex="0">
-      <span class="block-num">04</span>
-      <div class="block-info">
-        <div class="block-name">Дихання 4–7–8</div>
-        <div class="block-meta">Дихання · 3 хв</div>
-      </div>
-      <span class="block-toggle">+</span>
-    </div>
-    <div class="block-body">
-      <p class="instruction">Вдих носом — <strong>4 секунди</strong>. Затримка — <strong>7 секунд</strong>. Видих ротом — <strong>8 секунд</strong>. Повтори 4–6 циклів.<br><br>Це активує парасимпатичну нервову систему і знижує загальний м'язовий тонус — після цього постава стає вільнішою без будь-яких зусиль.</p>
-      <div class="cue-box">
-        <div class="cue-label">Якщо 7 секунд затримки — багато</div>
-        Почни з 4–4–6. Поступово збільшуй. Головне — видих завжди довший за вдих.
-      </div>
-      <div class="timer-row">
-        <button class="timer-btn" data-id="e4" data-total="180">Старт</button>
-        <div class="timer-display" id="td-e4"></div>
-        <div class="timer-progress"><div class="timer-fill" id="tf-e4"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="principle-strip">
-    <div class="principle-label">Принципи для нейропластичності</div>
-    <div class="principle-list">
+  <div class="principles">
+    <div class="principles-label">Принципи для нейропластичності</div>
+    <div class="pills">
       <span class="pill">Повільно і усвідомлено</span>
       <span class="pill">Дихання = якір</span>
       <span class="pill">Відчуття > правильність</span>
@@ -735,98 +760,77 @@
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
+<!-- ══════════ BOTTOM NAV ══════════ -->
 <nav class="bottom-nav">
-  <button class="nav-tab active" data-session="morning" id="nav-morning">
+  <button class="nav-btn active" data-session="morning">
     <span class="nav-icon">☀️</span>
     <span>Ранок</span>
-    <span class="nav-dot"></span>
   </button>
-  <button class="nav-tab" data-session="day" id="nav-day">
+  <button class="nav-btn" data-session="day">
     <span class="nav-icon">🌤</span>
     <span>День</span>
-    <span class="nav-dot"></span>
   </button>
-  <button class="nav-tab" data-session="evening" id="nav-evening">
+  <button class="nav-btn" data-session="evening">
     <span class="nav-icon">🌙</span>
     <span>Вечір</span>
-    <span class="nav-dot"></span>
   </button>
 </nav>
 
 <script>
-// ── NAV ──────────────────────────────────────────────
-document.querySelectorAll('.nav-tab').forEach(function(btn) {
+// NAV
+document.querySelectorAll('.nav-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
-    var sessionId = btn.getAttribute('data-session');
+    var id = btn.getAttribute('data-session');
     document.querySelectorAll('.session').forEach(function(s) { s.classList.remove('active'); });
-    document.querySelectorAll('.nav-tab').forEach(function(t) { t.classList.remove('active'); });
-    document.getElementById(sessionId).classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
     btn.classList.add('active');
     window.scrollTo(0, 0);
   });
 });
 
-// ── ACCORDION ────────────────────────────────────────
-// iOS fix: attach to block-head using event delegation on the parent session
-// because onclick="" on div doesn't always fire on iOS Safari
-document.querySelectorAll('.block-head').forEach(function(head) {
-  head.addEventListener('click', function(e) {
-    var block = head.closest('.block');
-    if (block) block.classList.toggle('open');
-  });
-  // extra iOS touch fix
-
-});
-
-// ── TIMERS ───────────────────────────────────────────
+// TIMERS
 var timers = {};
-
 document.querySelectorAll('.timer-btn').forEach(function(btn) {
   btn.addEventListener('click', function(e) {
-    e.stopPropagation(); // don't trigger accordion
+    e.stopPropagation();
     var id = btn.getAttribute('data-id');
     var total = parseInt(btn.getAttribute('data-total'), 10);
-    runTimer(btn, id, total);
-  });
-});
+    var disp = document.getElementById('td-' + id);
+    var fill = document.getElementById('tf-' + id);
 
-function runTimer(btn, id, total) {
-  var disp = document.getElementById('td-' + id);
-  var fill = document.getElementById('tf-' + id);
-
-  if (timers[id]) {
-    clearInterval(timers[id]);
-    delete timers[id];
-    btn.textContent = 'Старт';
-    btn.classList.remove('running');
-    disp.textContent = '';
-    fill.style.width = '0%';
-    return;
-  }
-
-  var rem = total;
-  btn.classList.add('running');
-  btn.textContent = 'Стоп';
-
-  function tick() {
-    var m = Math.floor(rem / 60);
-    var s = rem % 60;
-    disp.textContent = m > 0 ? m + ':' + (s < 10 ? '0' : '') + s : s + 'с';
-    fill.style.width = Math.round((1 - rem / total) * 100) + '%';
-    if (rem <= 0) {
+    if (timers[id]) {
       clearInterval(timers[id]);
       delete timers[id];
+      btn.textContent = 'Старт';
       btn.classList.remove('running');
-      btn.textContent = 'Повтор';
-      disp.textContent = '✓';
-      setTimeout(function() { fill.style.width = '0%'; disp.textContent = ''; }, 2000);
+      disp.textContent = '';
+      fill.style.width = '0%';
+      return;
     }
-    rem--;
-  }
-  tick();
-  timers[id] = setInterval(tick, 1000);
-}
+
+    var rem = total;
+    btn.classList.add('running');
+    btn.textContent = 'Стоп';
+
+    function tick() {
+      var m = Math.floor(rem / 60), s = rem % 60;
+      disp.textContent = m > 0 ? m + ':' + (s < 10 ? '0' : '') + s : s + 'с';
+      fill.style.width = Math.round((1 - rem / total) * 100) + '%';
+      if (rem <= 0) {
+        clearInterval(timers[id]);
+        delete timers[id];
+        btn.classList.remove('running');
+        btn.textContent = 'Повтор';
+        disp.textContent = '✓';
+        setTimeout(function() { fill.style.width = '0%'; disp.textContent = ''; }, 2000);
+      }
+      rem--;
+    }
+    tick();
+    timers[id] = setInterval(tick, 1000);
+  });
+});
 </script>
 </body>
 </html>
